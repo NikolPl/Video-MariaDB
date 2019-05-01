@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>VideoBoss</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/css/style.css"
+          th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <!--/*@thymesVar id="seznamZakazniku" type="java.util.List<cz.czechitas.webapp.Customer>"*/-->
+
+    <h1>Zákazníci</h1>
+
+    <h4>
+        <a href="edit.html"
+           th:href="@{/customers/new.html}"
+           class="actionButtonLink">
+            Přidat zákazníka
+        </a>
+    </h4>
+
+    <table>
+        <tr>
+            <th>Číslo</th>
+            <th>Křestní jméno</th>
+            <th>Příjmení</th>
+            <th>Adresa</th>
+            <th>Akce</th>
+        </tr>
+
+        <tr th:each="zakaznik : ${seznamZakazniku}">
+            <td th:text="${zakaznik.id}">1000</td>
+            <td th:text="${zakaznik.firstName}">Jack</td>
+            <td th:text="${zakaznik.lastName}">Sparrow</td>
+            <td th:text="${zakaznik.address}">Port Royale</td>
+            <td>
+                <a href="edit.html"
+                   th:href="@{'/customers/' + ${zakaznik.id} + '.html'}"
+                   class="actionButtonLink">Edit</a>
+
+                <a href="#" th:href="@{'/customers/delete/' + ${zakaznik.id}}"
+                   class="actionButtonLink">Remove</a>
+                
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

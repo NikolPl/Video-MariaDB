@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>VideoBoss</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/css/style.css"
+          th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <!--/*@thymesVar id="customer" type="cz.czechitas.webapp.Customer"*/-->
+
+    <h1>Detail zákazníka</h1>
+
+    <form action="seznam.html"
+          th:attr="action=''"
+          method="post">
+        <table>
+            <tr th:if="${customer.id ne null}">
+                <th>Číslo</th>
+                <td>
+                    <span th:text="${customer.id}">1000</span>
+                    <input type="hidden" name="version"
+                           value="0"
+                           th:value="${customer.version}"/>
+                    <input type="hidden" name="deleted"
+                           value="false"
+                           th:value="${customer.deleted}"/>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="firstName">Křestní jméno</label></th>
+                <td>
+                    <input id="firstName"
+                           name="firstName"
+                           value="Jack"
+                           th:value="${customer.firstName}"/>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="lastName">Příjmení</label></th>
+                <td>
+                    <input id="lastName"
+                           name="lastName"
+                           value="Sparrow"
+                           th:value="${customer.lastName}"/>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="address">Adresa</label></th>
+                <td>
+                    <input id="address"
+                           name="address"
+                           value="Port Royale"
+                           th:value="${customer.address}"/>
+                </td>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+                <td>
+                    <input type="submit" value="Odeslat"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
